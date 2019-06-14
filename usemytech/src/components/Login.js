@@ -2,16 +2,7 @@ import React from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  Input,
-  Alert
-} from "reactstrap";
+import { Form, Input } from "reactstrap";
 
 import { login } from "./actions/actions";
 
@@ -32,7 +23,10 @@ class Login extends React.Component {
               name="username"
               value={this.state.username}
               onChange={this.handleChanges}
-              className="login-input"
+              className={
+                this.props.error === true ? "error login-input" : "login-input"
+              }
+              required
             />
             <i class="fas fa-user" />
           </div>
@@ -43,67 +37,30 @@ class Login extends React.Component {
               name="password"
               value={this.state.password}
               onChange={this.handleChanges}
-              className="login-input"
+              className={
+                this.props.error === true ? "error login-input" : "login-input"
+              }
+              required
             />
             <i class="fas fa-key" />
           </div>
           <div>
             <div className="btn-login shd" onClick={this.login}>
-              {this.props.loggingIn === true ? <h3>Loading</h3> : <h3>GO</h3>}
+              {this.props.loggingIn === true ? (
+                <Loader
+                  type="ThreeDots"
+                  color="#fb553b"
+                  height={80}
+                  width={80}
+                />
+              ) : (
+                <h3>GO</h3>
+              )}
             </div>
             <i class="fas fa-sign-in-alt" />
           </div>
-          {/* <i class="fas fa-user-plus" onClick={this.modalToggle} /> */}
         </Form>
         <div className="login-splash" />
-        <>
-          <Modal
-            isOpen={this.state.modal}
-            toggle={this.modalToggle}
-            className="sign-up"
-          >
-            <ModalHeader className="sign-up" toggle={this.modalToggle}>
-              <i class="fas fa-cash-register" />
-              <h3>Sign Up!</h3>
-            </ModalHeader>
-            <ModalBody>
-              <div>
-                <Input
-                  type="text"
-                  name="username"
-                  placeholder="username"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                  className="login-input"
-                  required
-                />
-                <Input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  className="login-input"
-                  required
-                />
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                  className="login-input"
-                />
-              </div>
-              <i class="fas fa-cash-register" />
-            </ModalBody>
-            <ModalFooter className="sign-up">
-              <Button className="reg-btn" onClick={this.register}>
-                go tabless
-              </Button>{" "}
-            </ModalFooter>
-          </Modal>
-        </>
       </div>
     );
   }
@@ -120,14 +77,7 @@ class Login extends React.Component {
     });
   };
 
-  modalToggle = e => {
-    this.setState({
-      modal: !this.state.modal
-    });
-  };
-
-  login = e => {
-    console.log(">>>", this.props.test);
+  login = () => {
     this.props
       .login({
         username: this.state.username,
@@ -139,11 +89,10 @@ class Login extends React.Component {
   };
 }
 
-const mapStateToProps = ({ token, tech, test, loggingIn }) => ({
+const mapStateToProps = ({ token, loggingIn, error }) => ({
   token,
-  tech,
-  test,
-  loggingIn
+  loggingIn,
+  error
 });
 
 export default connect(
