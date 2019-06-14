@@ -13,20 +13,13 @@ const PrivateRoute = ({
   return (
     <Route
       {...rest}
-      render={props =>
-        token && errorStatusCode !== 403 ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to="/" />
-        )
-      }
+      render={props => (token ? <Component {...props} /> : <Redirect to="/" />)}
     />
   );
 };
 
-const mapStateToProps = props => ({
-  //   errorStatusCode,
-  //   token
+const mapStateToProps = ({ token }) => ({
+  token
 });
 
 export default withRouter(

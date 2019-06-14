@@ -183,6 +183,39 @@ h3 {
   display: flex;
 }
 
+.unlocked {
+  /* height: 300px;
+  width: 300px; */
+  /* display: flex;
+  justify-content: center; */
+  /* display: none; */
+  position: absolute;
+  margin-top: 400px;
+  margin-left: 220px;
+  /* animation: unlocked 6s cubic-bezier(0.39, 0.575, 0.565, 1) both; */
+  animation: slide-in-bottom 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes unlocked {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 form {
   width: 40%;
   display: flex;
@@ -220,12 +253,29 @@ i {
   color: #ff7059;
 }
 
+.fa-unlock-alt {
+  font-size: 100px;
+}
+
 .login-splash {
   width: 100%;
-  height: 100vh;
+  height: 110vh;
   background-image: url("https://i.imgur.com/baPCRtj.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  /* box-shadow: inset 130px -1px 17px -122px rgba(0, 0, 0, 0.75); */
+  /* box-shadow: inset 3px -1px 5px 0px rgba(0, 0, 0, 0.75); */
+  box-shadow: -8px 10px 44px 0px rgba(0, 0, 0, 0.75);
+}
+
+.loggedin-splash {
+  width: 100%;
+  height: 101vh;
+  background-image: url("https://i.imgur.com/izUGEPe.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%, 50%;
+  /* box-shadow: inset 3px -1px 5px 0px rgba(0, 0, 0, 0.75); */
   box-shadow: -8px 10px 44px 0px rgba(0, 0, 0, 0.75);
 }
 
@@ -241,9 +291,8 @@ i {
   font-family: "Roboto", sans-serif;
 }
 
-button {
-  width: 300px;
-  height: 50px;
+.modal {
+  background-color: "red";
 }
 
 .btn-login {
@@ -265,6 +314,7 @@ button {
   transition-duration: 0.3s;
   transition-property: box-shadow, transform;
 }
+
 .shd:hover,
 .shd:focus,
 .shd:active {
