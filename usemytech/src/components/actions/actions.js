@@ -7,9 +7,12 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .post("https://tab-manager.herokuapp.com/api/login", creds)
+    .post("https://usemytechstuff.herokuapp.com/api/auth/login", creds)
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
+      console.log("PAYLOAD", res.data);
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user_id", res.data.user_id);
+      dispatch({ type: LOGIN_SUCCESS });
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAILURE, payload: true });

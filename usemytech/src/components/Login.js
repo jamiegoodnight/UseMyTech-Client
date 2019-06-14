@@ -48,12 +48,12 @@ class Login extends React.Component {
             <i class="fas fa-key" />
           </div>
           <div>
-            <div className="btn-login shd">
-              <h3>GO</h3>
+            <div className="btn-login shd" onClick={this.login}>
+              {this.props.loggingIn === true ? <h3>Loading</h3> : <h3>GO</h3>}
             </div>
             <i class="fas fa-sign-in-alt" />
           </div>
-          <i class="fas fa-user-plus" onClick={this.modalToggle} />
+          {/* <i class="fas fa-user-plus" onClick={this.modalToggle} /> */}
         </Form>
         <div className="login-splash" />
         <>
@@ -63,36 +63,39 @@ class Login extends React.Component {
             className="sign-up"
           >
             <ModalHeader className="sign-up" toggle={this.modalToggle}>
-              <span className="accent-quote">“</span>
-              <div className="always-thursday" />
+              <i class="fas fa-cash-register" />
+              <h3>Sign Up!</h3>
             </ModalHeader>
             <ModalBody>
-              <Input
-                type="text"
-                name="username"
-                placeholder="username"
-                value={this.state.username}
-                onChange={this.handleChange}
-                className="login-input"
-                required
-              />
-              <Input
-                type="password"
-                name="password"
-                placeholder="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-                className="login-input"
-                required
-              />
-              <Input
-                type="email"
-                name="email"
-                placeholder="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                className="login-input"
-              />
+              <div>
+                <Input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  className="login-input"
+                  required
+                />
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  className="login-input"
+                  required
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  className="login-input"
+                />
+              </div>
+              <i class="fas fa-cash-register" />
             </ModalBody>
             <ModalFooter className="sign-up">
               <Button className="reg-btn" onClick={this.register}>
@@ -104,6 +107,12 @@ class Login extends React.Component {
       </div>
     );
   }
+  componentDidMount() {
+    if (this.props.token) {
+      this.props.history.push("/tech");
+    }
+  }
+
   handleChanges = e => {
     e.preventDefault();
     this.setState({
@@ -116,11 +125,25 @@ class Login extends React.Component {
       modal: !this.state.modal
     });
   };
+
+  login = e => {
+    console.log(">>>", this.props.test);
+    this.props
+      .login({
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(() => {
+        this.props.history.push("/tech");
+      });
+  };
 }
 
-const mapStateToProps = props => ({
-  //   props.token,
-  //   props.user_id
+const mapStateToProps = ({ token, tech, test, loggingIn }) => ({
+  token,
+  tech,
+  test,
+  loggingIn
 });
 
 export default connect(

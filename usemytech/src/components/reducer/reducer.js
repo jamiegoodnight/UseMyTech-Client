@@ -5,11 +5,17 @@ const initialState = {
   logginIn: false,
   error: null,
   token: localStorage.getItem("token"),
-  user_id: localStorage.getItem("user_id")
+  user_id: localStorage.getItem("user_id"),
+  test: ""
+
+  //   token: localStorage.getItem("token"),
+  //   user_id: localStorage.getItem("user_id")
 };
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_START:
+      console.log("STORE", state);
+      console.log("action", action);
       return {
         ...state,
         loggingIn: true,
@@ -20,7 +26,10 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         error: false,
-        token: action.payload,
+        // token: action.payload.token,
+        // user_id: action.payload.user_id
+        // test: action.payload.token
+        token: localStorage.getItem("token"),
         user_id: localStorage.getItem("user_id")
       };
     case LOGIN_FAILURE:
@@ -29,6 +38,8 @@ export const reducer = (state = initialState, action) => {
         loggingIn: false,
         error: true
       };
+    default:
+      return state;
   }
 };
 
