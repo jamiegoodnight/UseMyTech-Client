@@ -1,3 +1,11 @@
+## After Hours Authorization Demo
+
+animista.net
+GSAP
+ReactStrap
+https://www.cssmatic.com/box-shadow
+react-loader-spinners
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
