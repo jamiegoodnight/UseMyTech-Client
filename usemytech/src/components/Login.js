@@ -28,7 +28,7 @@ class Login extends React.Component {
               }
               required
             />
-            <i class="fas fa-user" />
+            <i className="fas fa-user" />
           </div>
           <div>
             <Input
@@ -42,7 +42,7 @@ class Login extends React.Component {
               }
               required
             />
-            <i class="fas fa-key" />
+            <i className="fas fa-key" />
           </div>
           <div>
             <div className="btn-login shd" onClick={this.login}>
@@ -57,7 +57,7 @@ class Login extends React.Component {
                 <h3>GO</h3>
               )}
             </div>
-            <i class="fas fa-sign-in-alt" />
+            <i className="fas fa-sign-in-alt" />
           </div>
         </Form>
         <div className="login-splash" />
