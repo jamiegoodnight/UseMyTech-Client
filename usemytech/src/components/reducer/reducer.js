@@ -28,7 +28,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        error: true
+        error: action.payload
       };
     default:
       return state;
