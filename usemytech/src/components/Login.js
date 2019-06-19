@@ -66,7 +66,7 @@ class Login extends React.Component {
   }
   componentDidMount() {
     if (this.props.token) {
-      this.props.history.push("/tech");
+      this.props.history.push("/");
     }
   }
 
@@ -84,7 +84,7 @@ class Login extends React.Component {
         password: this.state.password
       })
       .then(() => {
-        this.props.history.push("/tech");
+        this.props.history.push("/");
       });
   };
 }

@@ -1,8 +1,19 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions/actions";
+import {
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  FETCH_FRIENDS_START,
+  FETCH_FRIENDS_SUCCESS,
+  FETCH_FRIENDS_FAILURE,
+  ADD_FRIEND,
+  ADD_FRIEND_FAILURE
+} from "../actions/actions";
 
 const initialState = {
-  logginIn: false,
+  friends: [],
+  loggingIn: false,
   error: null,
+  loading: true,
   token: localStorage.getItem("token"),
   user_id: localStorage.getItem("user_id")
 };
@@ -28,6 +39,35 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
+        error: action.payload
+      };
+    case FETCH_FRIENDS_START:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case FETCH_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        friends: [...state.friends, ...action.payload],
+        loading: false,
+        error: null
+      };
+    case FETCH_FRIENDS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
+    case ADD_FRIEND:
+      return {
+        ...state,
+        friends: action.payload
+      };
+    case ADD_FRIEND_FAILURE:
+      return {
+        ...state,
         error: action.payload
       };
     default:

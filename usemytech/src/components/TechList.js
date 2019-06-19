@@ -32,7 +32,7 @@ class TechList extends React.Component {
             <i class="fas fa-sign-in-alt" />
           </div>
         </Form>
-        <div className="unlocked">
+        <div className="unlocked" onClick={this.makeFriends}>
           <i class="fas fa-unlock-alt" />
         </div>
         <div className="loggedin-splash" />
@@ -43,6 +43,11 @@ class TechList extends React.Component {
     const Form = document.querySelector("Form");
     TweenLite.to(Form, 2.5, { y: -650, ease: Power1.easeOut });
   }
+
+  makeFriends = e => {
+    e.preventDefault();
+    this.props.history.push("/fishfriends");
+  };
 }
 
 export default TechList;

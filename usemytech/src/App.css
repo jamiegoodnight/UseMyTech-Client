@@ -191,7 +191,7 @@ i {
   color: #ff6e59;
 }
 
-.fa-user-plus {
+/* .fa-user-plus {
   margin-top: 60px;
   margin-left: -20px;
   font-size: 80px;
@@ -205,10 +205,16 @@ i {
 .fa-user-plus:hover {
   transform: scale(1.1);
   color: #ff7059;
-}
+} */
 
 .fa-unlock-alt {
   font-size: 100px;
+  cursor: pointer;
+}
+
+.fa-unlock-alt:hover {
+  color: #00bfff;
+  font-size: 110px;
 }
 
 .login-splash {
@@ -254,8 +260,6 @@ i {
   cursor: pointer;
 }
 
-/* Animista animations @ www.animista.net */
-
 .shd {
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -295,4 +299,43 @@ i {
   90% {
     transform: translateX(-8px);
   }
+}
+
+.friends-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend-form {
+  height: 350px;
+  width: 380px;
+  margin: 20px;
+}
+
+.card {
+  height: 350px;
+  width: 280px;
+  margin: 20px;
+  box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.75);
+  animation: fade-in-fwd 1.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes fade-in-fwd {
+  0% {
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+.friend-image {
+  height: 250px;
+}
+
+.loader {
+  margin-top: 15%;
+  margin-left: 43%;
 }
