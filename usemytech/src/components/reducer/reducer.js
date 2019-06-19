@@ -14,8 +14,7 @@ const initialState = {
   loggingIn: false,
   error: null,
   loading: true,
-  token: localStorage.getItem("token"),
-  user_id: localStorage.getItem("user_id")
+  token: localStorage.getItem("token")
 };
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,8 +31,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         error: false,
-        token: localStorage.getItem("token"),
-        user_id: localStorage.getItem("user_id")
+        token: localStorage.getItem("token")
       };
     case LOGIN_FAILURE:
       return {
